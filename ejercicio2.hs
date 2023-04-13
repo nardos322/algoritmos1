@@ -1,3 +1,5 @@
+{-HLINT ignore -}
+
 absoluto :: Int -> Int
 absoluto x  | x > 0 = x
             | otherwise = -x
@@ -40,8 +42,14 @@ sumaDistintos a b c | a == b  = a + c
                     | otherwise = a + b + c 
 
 
+esMultiploDe :: Int -> Int -> Bool 
+esMultiploDe a b    | a `mod` b == 0 = True
+                    | otherwise = False                   
+
+
 digitoUnidades :: Int -> Int
 digitoUnidades x = mod x 10
 
 digitoDecenas :: Int -> Int 
-digitoDecenas x = div (mod x 100) 10                    
+digitoDecenas x = div (mod x 100) 10    
+

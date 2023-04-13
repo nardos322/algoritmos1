@@ -1,3 +1,5 @@
+{-HLINT ignore -}
+
 f :: Integer -> Integer
 f x | x == 1 = 8
     | x == 4 = 131
@@ -20,9 +22,9 @@ k x | x == 1 = g(f(x))
     | x == 16 = g(f(x))    
 
 
-y :: Int -> Int
+y :: Integer -> Integer
 y n = f(g(n))
 
-z :: Int -> Int
+z :: Integer -> Integer
 z n = g(f(n))
 

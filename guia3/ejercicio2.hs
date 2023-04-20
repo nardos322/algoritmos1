@@ -1,3 +1,5 @@
+module Ejercicio2 where
+
 {-HLINT ignore -}
 
 absoluto :: Int -> Int

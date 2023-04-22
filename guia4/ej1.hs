@@ -26,4 +26,21 @@ sumaImpares n   | n < 0 = 0
 
 nEsimoImpar:: Integer -> Integer
 nEsimoImpar n = n*2-1
+
+medioFact:: Integer -> Integer
+medioFact 0 = 1
+medioFact 1 = 1
+medioFact n = n * medioFact(n-2)
                       
+sumaDigitos:: Integer -> Integer
+sumaDigitos 0 = 0
+sumaDigitos n = resto n + sumaDigitos (sacarUltimo n)
+
+resto:: Integer -> Integer
+resto n = n `mod` 10
+
+sacarUltimo:: Integer -> Integer
+sacarUltimo n = n `div` 10
+
+todosDigitosIguales:: Integer -> Bool
+todosDigitosIguales n 

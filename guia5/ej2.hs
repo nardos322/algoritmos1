@@ -1,4 +1,4 @@
-import Ej1(longitud, ultimo)
+import Ej1(longitud)
 
 pertenece:: (Eq t) => t -> [t] -> Bool
 pertenece n [] = False

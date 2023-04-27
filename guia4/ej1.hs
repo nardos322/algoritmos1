@@ -42,5 +42,5 @@ resto n = n `mod` 10
 sacarUltimo:: Integer -> Integer
 sacarUltimo n = n `div` 10
 
-todosDigitosIguales:: Integer -> Bool
-todosDigitosIguales n 
+--todosDigitosIguales:: Integer -> Bool
+--todosDigitosIguales n 

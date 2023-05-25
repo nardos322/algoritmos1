@@ -33,7 +33,7 @@ def divide_a_todos(numeros: list, n: float) -> bool:
         if(numero%n != 0):
             return False
         else:
-            valor = True
+            valor = True        
     return valor
 
 def suma_total(s: list) -> float:
@@ -44,8 +44,30 @@ def suma_total(s: list) -> float:
 
 
 def ordenados(s: list) -> bool:
-    x: int = 0
+    
     for i in range(len(s)):
-        print(s[i])
+        if(s[0] < s[i] < s[len(s)-1]):
+            return True
+    return False
 
-ordenados([1,2,3])
+
+def tiene_mas_de7(p: str) -> bool:
+    return len(p) > 7
+
+
+def es_palindromo(palabra: str) -> bool:
+    
+    i: int = len(palabra) - 1
+    p_invertida: str = ''
+
+    while i >= 0:
+        p_invertida += palabra[i]
+         
+        i -= 1        
+    return palabra == p_invertida
+ 
+
+
+
+
+print(es_palindromo('reconocer'))

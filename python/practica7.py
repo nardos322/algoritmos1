@@ -182,4 +182,25 @@ def viaje_en_el_tiempo(año_partida: int, año_llegada: int) -> str:
         año_partida-=1
         i+=1    
 
-viaje_en_el_tiempo(2000, 1990)
+
+
+def rt(x: int, g: int) -> int:
+    g = g + 1
+    return x + g
+
+g: int = 0
+
+def ro(x: int) -> int:
+    global g
+    g = g + 1
+    return x + g
+
+
+
+print(ro(1))
+print(ro(1))
+print(ro(1))
+
+print(rt(1, 0))
+print(rt(1, 0))
+print(rt(1, 0))

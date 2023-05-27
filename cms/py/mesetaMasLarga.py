@@ -4,27 +4,67 @@ from typing import List
 # l: List[int]  <--Este es un ejemplo para una lista de enteros.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def mesetaMasLarga(l: List[int]) -> int :
-  count: int = 0
   
+  values: List[int] = []
+  contador: int = 0
 
-def todosIguales(l: List[int],i: int,j: int) -> bool:
-  k:int = 0
-  count: int = 0
-  while i<= k < j:
-    if l[k] == l[i]:
-      count += 1
-    elif l[k] == l[i+1]: 
-      
-      count += 1
-      
-    k+=1  
-  return count  
+  if l == []:
+    return 0
 
+  if todos_distintos(l):
+    return 1
  
+  for i in range(len(l)):
     
+    if i < len(l)-1 :
+      if l[i] == l[i+1]:
+        contador += 1
+        #values.append(l[i])
+        #print(1, values)
+      elif l[i] != l[i+1] and l[i+1] == len(l)-1:
+        return contador + 1  
+      else:
+        contador = 0
+        
+  
+  #return secuencia_de_repetidos(values)
+  return contador + 1
+  
+                    
+
+def todos_distintos(l: List[int]) -> bool:
+
+  value: bool
+  if len(l) == 1 :
+    return True
+  for i in range(len(l)):
+    if i < len(l)-1:
+      if l[i] != l[i+1]:
+        value = True
+      else:
+        return False
+ 
+  return value 
 
 
-print(todosIguales([1,2,2,2],0, 4))
+
+
+def secuencia_de_repetidos(l: List[int]) -> int:
+  contador: int = 0
+  meseta: List[int] = []
+  
+  for i in range(len(l)):
+    if i < len(l)-1 and l[i] == l[i+1]:
+      contador += 1
+    else:
+      meseta.append(contador + 1)
+      contador = 0
+  return max(meseta) + 1
+    
+     
+print(mesetaMasLarga([1,1,3]))        
+
+
 
 # if __name__ == '__main__':
 #   x = input()

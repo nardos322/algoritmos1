@@ -19,16 +19,30 @@ def mesetaMasLarga(l: List[int]) -> int :
     if i < len(l)-1 :
       if l[i] == l[i+1]:
         contador += 1
-        #values.append(l[i])
+        values.append(l[i])
         #print(1, values)
-      elif l[i] != l[i+1] and l[i+1] == len(l)-1:
-        return contador + 1  
-      else:
-        contador = 0
+      
+      elif l[i] != l[i+1] and i+1 == len(l)-1:
+        values
+      elif not (i+3 > len(l) -1):
+        if l[i] != l[i+1] and l[i+2] != l[i+3]:
+          values
+        if l[i] != l[i+1] and l[i] == l[i+2] and not(i+1 == len(l)-1):  
+          
+          if(len(values) == 1):
+            valor_repetido: int = l[i]
+            index: int = values.index(valor_repetido)
+           
+            values.pop(index)
+          
+          elif len(values) > 1 :
+              valor_repetido: int = len(values) - 1
+              values.pop(valor_repetido)
         
   
-  #return secuencia_de_repetidos(values)
-  return contador + 1
+  return secuencia_de_repetidos(values)
+  
+
   
                     
 
@@ -61,8 +75,16 @@ def secuencia_de_repetidos(l: List[int]) -> int:
       contador = 0
   return max(meseta) + 1
     
-     
-print(mesetaMasLarga([1,1,3]))        
+print(mesetaMasLarga([])) 
+print(mesetaMasLarga([1,1,1,2,3,4]))       
+print(mesetaMasLarga([1,2,3,4]))       
+print(mesetaMasLarga([1,1,2,2]))
+print(mesetaMasLarga([1,1,2,1,1,1,1]))      
+print(mesetaMasLarga([1,1,2,2,3,3,3,4,5,6])) 
+print(mesetaMasLarga([1,1,1,2,2,2]))  
+print(mesetaMasLarga([1,1,2,3,4]))   
+print(mesetaMasLarga([1,1,1,1,3,3,4,4,4,4,4,5,5,1,1,2,1,1,1,1,1,1]))
+print(mesetaMasLarga([2,2,2,2,1,2,2,1,1,3,3,3,2,2,2,2,2]))
 
 
 

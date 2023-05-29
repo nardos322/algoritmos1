@@ -5,9 +5,12 @@ from typing import List
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def filasParecidas(matriz: List[List[int]]) -> bool :
   # Implementar esta funcion
-  for column in range(len(matriz[0])):
-     for fila in range(len(matriz)):
-        print('f',fila)
+  for n in range(-10, 10):
+    res: bool = filasParecidasAanterior(matriz, n)
+    if(res == True):
+      return res
+    else:
+      return False
   
 
 def filasParecidasAanterior(matriz: List[List[int]], n: int):
@@ -15,21 +18,24 @@ def filasParecidasAanterior(matriz: List[List[int]], n: int):
      return True
   
   for i in range(1,len(matriz)):
-    print('j',i)
+    
     res = filaAnteriorMasN(matriz, i, n)
   return res
 
 def filaAnteriorMasN(matriz: List[List[int]], i: int, n: int):
 
   for j in range(len(matriz[0])):
-      if not(matriz[i][j] == (matriz[i-1][j] + n)):
-        return False
-      
-  return True
+      if(matriz[i][j] == (matriz[i-1][j] + n)):
+        ##print('hola')
+        return True
+  print('hola')    
+  return False
 
 
 
-print(filasParecidasAanterior([[1,1,1]],1))   
+#print(filasParecidasAanterior([[1],],3))   
+
+print(filasParecidas([[1,2,3], [4,5,6]]))
 
 # if __name__ == '__main__':
 #   filas = int(input())

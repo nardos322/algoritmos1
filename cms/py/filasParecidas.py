@@ -6,11 +6,18 @@ from typing import List
 solo_true: List[bool] = []
 def filasParecidas(matriz: List[List[int]]) -> bool :
   # Implementar esta funcion
-  for n in range(0, 4):
+  for n in range(0, 5):
+    
+    
     res: bool = filasParecidasAanterior(matriz, n)
+  #if(len(res) == (len(matriz[0])-1)*3):
+   # return True
+  #else:
+    #return False
+    #print(res)
   return res
-    # if(res == True):
-    #   return res
+    
+  
    
   
 
@@ -29,11 +36,19 @@ def filaAnteriorMasN(matriz: List[List[int]], i: int, n: int):
   for j in range(len(matriz[0])):
     
     #print('i', i,'j',j , 'n', n)
+    
     if(matriz[i][j] == (matriz[i-1][j] + n)):
+      print('i', i,'j',j , 'n', n, matriz[i][j] == (matriz[i-1][j] + n))
       solo_true.append(matriz[i][j] == (matriz[i-1][j] + n))
-      ##print('i', i,'j',j , 'n', n, matriz[i][j] == (matriz[i-1][j] + n))
-      ##print(solo_true)
+  
+  #print(solo_true)
   return solo_true
+  
+
+    
+      ##print(solo_true)
+    ##return matriz[i][j] == (matriz[i-1][j] + n)
+  #return solo_true
 
   
 
@@ -41,7 +56,7 @@ def filaAnteriorMasN(matriz: List[List[int]], i: int, n: int):
 
 ##print(filasParecidasAanterior([[1,2,3],[4,5,6]],1))   
 
-print(filasParecidas([[1,2,3], [4,5,6],[7,8,20]]))
+print(filasParecidas([[1,2,3,4],[4,5,6,20],[7,8,9,10]]))
 
 # if __name__ == '__main__':
 #   filas = int(input())

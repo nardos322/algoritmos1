@@ -3,14 +3,15 @@ from typing import List
 # Aclaración: Debido a la versión de Python del CMS, para el tipo Lista, la sintaxis de la definición de tipos que deben usar es la siguiente:
 # l: List[int]  <--Este es un ejemplo para una lista de enteros.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
+solo_true: List[bool] = []
 def filasParecidas(matriz: List[List[int]]) -> bool :
   # Implementar esta funcion
-  for n in range(-10, 10):
+  for n in range(0, 4):
     res: bool = filasParecidasAanterior(matriz, n)
-    if(res == True):
-      return res
-    else:
-      return False
+  return res
+    # if(res == True):
+    #   return res
+   
   
 
 def filasParecidasAanterior(matriz: List[List[int]], n: int):
@@ -18,24 +19,29 @@ def filasParecidasAanterior(matriz: List[List[int]], n: int):
      return True
   
   for i in range(1,len(matriz)):
-    
+    ##print('i',i)
     res = filaAnteriorMasN(matriz, i, n)
   return res
 
 def filaAnteriorMasN(matriz: List[List[int]], i: int, n: int):
+  
 
   for j in range(len(matriz[0])):
-      if(matriz[i][j] == (matriz[i-1][j] + n)):
-        ##print('hola')
-        return True
-  print('hola')    
-  return False
+    
+    #print('i', i,'j',j , 'n', n)
+    if(matriz[i][j] == (matriz[i-1][j] + n)):
+      solo_true.append(matriz[i][j] == (matriz[i-1][j] + n))
+      ##print('i', i,'j',j , 'n', n, matriz[i][j] == (matriz[i-1][j] + n))
+      ##print(solo_true)
+  return solo_true
+
+  
 
 
 
-#print(filasParecidasAanterior([[1],],3))   
+##print(filasParecidasAanterior([[1,2,3],[4,5,6]],1))   
 
-print(filasParecidas([[1,2,3], [4,5,6]]))
+print(filasParecidas([[1,2,3], [4,5,6],[7,8,20]]))
 
 # if __name__ == '__main__':
 #   filas = int(input())

@@ -1,108 +1,56 @@
 from typing import List
 from typing import Tuple
 
-# Aclaración: Debido a la versión de Python del CMS, para el tipo Lista y Tupla, la sintaxis de la definición de tipos que deben usar es la siguiente:
-# l: List[int]  <--Este es un ejemplo para una lista de enteros.
-# t: Tuple[str,str]  <--Este es un ejemplo para una tupla de strings.
-# Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 
-vuelos: List[Tuple[str, str]] = [('A','B'),('B','E'),('E','C')]
-contador_de_vuelos: int = 0
-destinos_vuelos: List[str] = []
-origen_vuelos: List[str] = []
-rutas: List[Tuple[str, str]] = []
+vuelos: List[Tuple[str, str]] = [('B','E'),('A','B'),('E','C')]
 
-origen: str = 'A'
-destino: str = 'E'
+origen: str = 'B'
+destino: str = 'C'
 
 
-def pertenece(lista: list, n: float) -> bool:
-    for numero in lista:
-        if(numero == n):
-            return True
-        
-    return False
+def ordenar_vuelos(origen: str, vuelos: List[Tuple[str, str]]) -> List[Tuple[str,str]]:
+  vuelos_ord: List[Tuple[str,str]] = []
 
+  vuelos_res = vuelos.copy()
+  continuar: bool = True
+  ciudad_buscada = origen
 
+  while continuar:
+    for i in range(len(vuelos)):
+      if len(vuelos_res) == 0:
+        return vuelos_ord
+      vuelo = vuelos[i]
+      if vuelo[0] == ciudad_buscada:
+        vuelos_ord.append(vuelo)
+        vuelos_res.remove(vuelo)
+        ciudad_buscada = vuelo[1]
+    continuar = False
 
-
-
-
-def soloParteUnVueloDeCadaCiudad(vuelos: List[Tuple[str,str]]) -> bool:
-  for i in range(len(vuelos)):
-    origen_vuelos.append(vuelos[i][0])
-  for destino in origen_vuelos:
-    if(origen_vuelos.count(destino)>1):
-      return False
-  return True  
-
-def soloLlegaUnVueloAcadaCiudad(vuelos: List[Tuple[str,str]]) -> bool:
-  
-  for i in range(len(vuelos)):
-    destinos_vuelos.append(vuelos[i][1])
-  for destino in destinos_vuelos:
-    if(destinos_vuelos.count(destino)>1):
-      return False
-  return True  
-
-  
-def hayRuta(vuelos: List[Tuple[str, str]], origen: str, destino: str) -> bool:
-  hay_origen: bool = False
-  hay_destino: bool = False
-  
-  for ruta_origen in vuelos:
-   
-    if((ruta_origen[0] == origen)):
-      hay_origen = True
-   
-  for ruta_destino in vuelos:
-    if(ruta_destino[1] == destino):
-      hay_destino = True  
-    
-  if(hay_origen and hay_destino):
-    return True
-  else:
-    return False    
-
-def caminoDeVuelos(vuelos: List[Tuple[str,str]]):
-  for i in range(1,len(vuelos)):
-    if not vuelos[i][0] == vuelos[i-1][1]:     
-      return False
-  return True  
-
+    for i in range(len(vuelos_res)):
+      if vuelos_res[i][0] == ciudad_buscada:
+        continuar = True
+  return vuelos_ord
 
 
 
 def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> int :
   # definir esta función
-  if(hayRuta(vuelos, origen, destino)):
-    for ruta in vuelos:
-      
-      if(ruta[0]== origen) or (ruta[1] == destino):
+
+ 
+  vuelos_ord = ordenar_vuelos(origen, vuelos)
+  if len(vuelos_ord) == 0: return -1
+
+  for i in range(len(vuelos_ord)):
+    if vuelos_ord[i][1] == destino:
+      return i+1
+  return -1  
         
-        rutas.append(ruta)
-         
-    if(caminoDeVuelos(rutas)):
-      return len(rutas)
-    else:
-      return -1    
-    
 
-ruta1 =  [('A','B')]
-
-ruta2 = ('B','E')
    
-print(pertenece(ruta1[0], ruta2[0]))
 
-#print(soloLlegaUnVueloAcadaCiudad(vuelos))
-#print(soloParteUnVueloDeCadaCiudad(vuelos))
-#print(caminoDeVuelos(vuelos))
-#print(hayRuta(vuelos, origen, destino))
-print(sePuedeLlegar(origen, destino, vuelos))
-
-# if __name__ == '__main__':
-#   origen = input()
-#   destino = input()
-#   vuelos = input()
+if __name__ == '__main__':
+  origen = input()
+  destino = input()
+  vuelos = input()
   
-#   print(sePuedeLlegar(origen, destino, [tuple(vuelo.split(',')) for vuelo in vuelos.split()]))
+  print(sePuedeLlegar(origen, destino, [tuple(vuelo.split(',')) for vuelo in vuelos.split()]))              

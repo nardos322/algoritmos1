@@ -75,19 +75,9 @@ def secuencia_de_repetidos(l: List[int]) -> int:
       contador = 0
   return max(meseta) + 1
     
-print(mesetaMasLarga([])) 
-print(mesetaMasLarga([1,1,1,2,3,4]))       
-print(mesetaMasLarga([1,2,3,4]))       
-print(mesetaMasLarga([1,1,2,2]))
-print(mesetaMasLarga([1,1,2,1,1,1,1]))      
-print(mesetaMasLarga([1,1,2,2,3,3,3,4,5,6])) 
-print(mesetaMasLarga([1,1,1,2,2,2]))  
-print(mesetaMasLarga([1,1,2,3,4]))   
-print(mesetaMasLarga([1,1,1,1,3,3,4,4,4,4,4,5,5,1,1,2,1,1,1,1,1,1]))
-print(mesetaMasLarga([2,2,2,2,1,2,2,1,1,3,3,3,2,2,2,2,2]))
 
 
 
-# if __name__ == '__main__':
-#   x = input()
-#   print(mesetaMasLarga([int(j) for j in x.split()]))
+if __name__ == '__main__':
+  x = input()
+  print(mesetaMasLarga([int(j) for j in x.split()]))

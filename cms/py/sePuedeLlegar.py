@@ -2,10 +2,10 @@ from typing import List
 from typing import Tuple
 
 
-vuelos: List[Tuple[str, str]] = [('B','E'),('A','B'),('E','C')]
+vuelos: List[Tuple[str, str]] = [('C','D'),('F','G'),('G','A'),('D','F')]
 
-origen: str = 'B'
-destino: str = 'C'
+origen: str = 'C'
+destino: str = 'A'
 
 
 def ordenar_vuelos(origen: str, vuelos: List[Tuple[str, str]]) -> List[Tuple[str,str]]:
@@ -24,6 +24,7 @@ def ordenar_vuelos(origen: str, vuelos: List[Tuple[str, str]]) -> List[Tuple[str
         vuelos_ord.append(vuelo)
         vuelos_res.remove(vuelo)
         ciudad_buscada = vuelo[1]
+        
     continuar = False
 
     for i in range(len(vuelos_res)):
@@ -46,11 +47,12 @@ def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> i
   return -1  
         
 
+print(sePuedeLlegar(origen, destino, vuelos))
    
 
-if __name__ == '__main__':
-  origen = input()
-  destino = input()
-  vuelos = input()
+# if __name__ == '__main__':
+#   origen = input()
+#   destino = input()
+#   vuelos = input()
   
-  print(sePuedeLlegar(origen, destino, [tuple(vuelo.split(',')) for vuelo in vuelos.split()]))              
+#   print(sePuedeLlegar(origen, destino, [tuple(vuelo.split(',')) for vuelo in vuelos.split()]))              

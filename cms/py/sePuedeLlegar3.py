@@ -6,15 +6,11 @@ from typing import Tuple
 # t: Tuple[str,str]  <--Este es un ejemplo para una tupla de strings.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 
-vuelos: List[Tuple[str, str]] = [('B','E'),('A','B'),('E','C')]
-contador_de_vuelos: int = 0
-destinos_vuelos: List[str] = []
-origen_vuelos: List[str] = []
+vuelos: List[Tuple[str, str]] = [('J','C'),('A','R'),('B','E'),('R','J')]
 rutas: List[Tuple[str, str]] = []
 
 origen: str = 'A'
-destino: str = 'E'
-
+destino: str = 'C'
 
 
   
@@ -45,45 +41,61 @@ def caminoDeVuelos(vuelos: List[Tuple[str,str]]):
 
 
 
+
+
+
 def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> int :
   # definir esta función
-
- 
+  ciudad_buscada: str 
+  continuar = True
+  for ruta in vuelos:
+    if ruta[0] == origen and ruta[1] == destino:
+      return 1
 
   if(hayRuta(vuelos, origen, destino)):
-
     for ruta in vuelos:
-      print(ruta)
-      if ruta[0] == origen and ruta[1] == destino:
-        return 1
       
-    for ruta in vuelos:
-      if(ruta[0] == origen):
-        
-        vuelos.remove(ruta)
+      if ruta[0] == origen :
         rutas.append(ruta)
-   
-    for i in range(len(vuelos)):
-     
-      if len(rutas) == 1:
+        vuelos.remove(ruta)  
+        ciudad_buscada = ruta[1]
+      
+    while continuar:
+      for ruta in vuelos:  
         
-        if rutas[0][1] == vuelos[i][0] or rutas[i][1] == destino :
+        if ruta[0] == ciudad_buscada:
+          print(ciudad_buscada)
+          rutas.append(ruta)  
           
-          rutas.append(vuelos[i])
+          ciudad_buscada = ruta[1]
           
-      else:    
-              
-        if (rutas[i][1] == vuelos[i][0]) or rutas[i][1] == destino :
-          rutas.append(vuelos[i])
+          
+          if hayRuta(rutas, origen, destino) and caminoDeVuelos(rutas):
+            
+            return len(rutas) 
+          
+          continuar = False
        
-    
-    if(caminoDeVuelos(rutas)):
+      for i in range(len(vuelos)):
+        print(rutas)
+        if not vuelos[i][0] == ciudad_buscada:
+          continuar = False
+        elif vuelos[i][0] == ciudad_buscada:
+          
+          continuar = True
+        
+   
+    if(hayRuta(rutas, origen, destino) and caminoDeVuelos(rutas)):
+      
       return len(rutas)
-    else:
-      return -1    
+    else: 
+     
+      return -1
+    
   else:
-    return -1      
+    return -1
 
+  
 
 print(sePuedeLlegar(origen, destino, vuelos))    
 

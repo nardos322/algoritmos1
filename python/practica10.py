@@ -70,6 +70,22 @@ def existe_palabra(palabra_input: str, nombre_archivo: str) -> bool:
    
     
    
+b = [('a','b'), ('c','d')]
+
+c = ['c','b','a']
 
 
 
+
+
+def lista_llegadas(b,c):
+    llegadas: list = []
+
+    for i in range (len(c)):
+        for j in range(len(b)):
+            if b[j][0] == c[i]:
+                llegadas.append(b[j][1])
+            
+    return llegadas
+
+print(lista_llegadas(b,c))

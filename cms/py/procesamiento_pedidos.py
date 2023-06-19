@@ -4,22 +4,8 @@ from typing import Dict
 from typing import Union
 import json
 
-pedidos = [
-  {
-    'id': 21,
-    'cliente': 'Gabriela',
-    'productos': {'manzana':2,'leche':4}
-  },
-  {
-    'id': 1,
-    'cliente': 'Juan',
-    'productos': {'manzana': 2, 'pan': 4, 'factura': 6}
-  }
- 
-]
 
-stock_productos = {'manzana':10, 'leche':15, 'pan': 6, 'factura': 0}
-precios_productos = {'manzana': 3.5, 'leche': 1.5, 'pan': 4, 'factura': 2.75}
+
 
 # ACLARACIÓN: El tipo de "pedidos" debería ser: pedidos: Queue[Dict[str, Union[int, str, Dict[str, int]]]]
 # Por no ser soportado por la versión de CMS, usamos simplemente "pedidos: Queue"
@@ -27,20 +13,44 @@ def procesamiento_pedidos(pedidos: Queue,
                           stock_productos: Dict[str, int],
                           precios_productos: Dict[str, float]) -> List[Dict[str, Union[int, str, float, Dict[str, int]]]]:
   
-  cola_de_pedidos: Queue = Queue()
-  for i in pedidos:
-    cola_de_pedidos.put(i)
 
-  # res = []
+  pedidos_procesados = []
 
+
+ 
+  while not pedidos.empty():
   
-  pedido: dict = cola_de_pedidos.get()
+    
+    pedido_solicitado = pedidos.get()
+    productos_solicitados = pedido_solicitado['productos'].keys()
+    
+    pedido_solicitado['precio_total']: float = 0  
+    pedido_solicitado['estado']: str = '' 
+    for producto in productos_solicitados:
+      
+      
+      if stock_productos[producto] - pedido_solicitado['productos'][producto] >= 0:
+       
+        stock_productos[producto] -= pedido_solicitado['productos'][producto]
+        
+        pedido_solicitado['precio_total'] += pedido_solicitado['productos'][producto]*precios_productos[producto]
+        
+      else:
+      
+        pedido_solicitado['productos'][producto] = stock_productos[producto]
+        stock_productos[producto] -= stock_productos[producto]
+        pedido_solicitado['precio_total'] += pedido_solicitado['productos'][producto]*precios_productos[producto]
+        pedido_solicitado['estado'] = 'incompleto' 
+      if  not pedido_solicitado['estado'] == 'incompleto':
+        pedido_solicitado['estado'] = 'completo'
+    pedidos_procesados.append(pedido_solicitado)    
+    
+  return pedidos_procesados    
 
-  print(len(pedido['productos'].keys()))
+    
 
-
-
-procesamiento_pedidos(pedidos, stock_productos, precios_productos)
+# print(procesamiento_pedidos(pedidos, stock_productos, precios_productos))
+# print(stock_productos)
 
 
 

@@ -1,9 +1,9 @@
 import sys
 from queue import Queue
-sys.path.insert(1,'C:\\Users\\gcau\\Documents\\codigo\\algoritmos1\\cms\\py')
+sys.path.append('../')
 from procesamiento_pedidos import procesamiento_pedidos
 
-
+print(sys.path)
 
 
 def test_procesamiento_pedidos():

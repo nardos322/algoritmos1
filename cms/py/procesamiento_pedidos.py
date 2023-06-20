@@ -6,7 +6,6 @@ import json
 
 
 
-
 # ACLARACIÓN: El tipo de "pedidos" debería ser: pedidos: Queue[Dict[str, Union[int, str, Dict[str, int]]]]
 # Por no ser soportado por la versión de CMS, usamos simplemente "pedidos: Queue"
 def procesamiento_pedidos(pedidos: Queue,
@@ -46,11 +45,8 @@ def procesamiento_pedidos(pedidos: Queue,
     pedidos_procesados.append(pedido_solicitado)    
     
   return pedidos_procesados    
+ 
 
-    
-
-# print(procesamiento_pedidos(pedidos, stock_productos, precios_productos))
-# print(stock_productos)
 
 
 

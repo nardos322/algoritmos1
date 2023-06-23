@@ -24,7 +24,7 @@ def avanzarFila(fila: Queue, min: int):
       
       fila.get()
       
-    elif i%4 == 3 and not fila.empty():
+    if i%4 == 3 and not fila.empty():
       fila.get()
      
     if i%4 == 2 or (i%4 == 1 and i > 1):
@@ -32,7 +32,7 @@ def avanzarFila(fila: Queue, min: int):
       if i%4 == 2 and not fila.empty():
         n = fila.get()
         
-      if i%4 == 1 and fila.empty():
+      if i%4 == 1 and n != 0:
         fila.put(n)
 
 

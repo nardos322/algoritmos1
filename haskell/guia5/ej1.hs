@@ -1,4 +1,5 @@
 module Ej1 where
+{-HLINT ignore-}
 
 longitud:: [t] -> Integer
 longitud [] = 0

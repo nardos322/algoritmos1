@@ -1,11 +1,13 @@
+{--HLINT ignore--}
+
 absoluto :: Int -> Int
 absoluto x  | x > 0 = x
             | otherwise = -x
 
 
 maximoAbsoluto :: Int -> Int -> Int
-maximoAbsoluto x y  | absoluto(x) > absoluto(y) = absoluto(x)
-                    | otherwise = absoluto(y)
+maximoAbsoluto x y  | absoluto x > absoluto y = absoluto x
+                    | otherwise = absoluto y
 
 
 maximo3 :: Int -> Int -> Int -> Int
@@ -28,7 +30,7 @@ ambosSon0 :: Float -> Float -> Bool
 ambosSon0 x y   | x == 0 && y == 0 = True
                 | otherwise = False
 
-ambosSon0' :: Float -> Float -> Bool
+ambosSon0' :: Float -> Float -> Bool            
 ambosSon0' 0 0 = True
 ambosSon0' _ _ = False
 
@@ -62,4 +64,5 @@ estanRelacionados a b   | a `mod` b == 0 = True
                         | otherwise = False
 
 prodInt:: (Int, Int) -> (Int, Int) -> Int
-prodInt a b = (fst a * fst b + snd a * snd b)
+prodInt a b = fst a * fst b + snd a * snd b
+

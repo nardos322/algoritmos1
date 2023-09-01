@@ -1,4 +1,5 @@
 --import Ej1(longitud)
+{-HLINT ignore-}
 
 longitud:: [t] -> Integer
 longitud [] = 0

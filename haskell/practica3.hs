@@ -66,3 +66,46 @@ estanRelacionados a b   | a `mod` b == 0 = True
 prodInt:: (Int, Int) -> (Int, Int) -> Int
 prodInt a b = fst a * fst b + snd a * snd b
 
+
+todoMenor :: (Float, Float) -> (Float, Float) -> Bool
+todoMenor a b   | fst a < fst b && snd a < snd b = True
+                | otherwise = False
+
+distanciaPuntos :: (Float, Float) -> (Float, Float) -> Float
+distanciaPuntos a b = sqrt((snd a - fst a)**2 + (snd b - fst b)**2)
+
+sumaTerna :: (Int, Int, Int) -> Int
+sumaTerna a = case a of (x,y,z) -> x + y + z
+
+sumarSoloMultiplos :: (Int, Int, Int) -> Int -> Int
+sumarSoloMultiplos (x,y,z) n    | (esMultiploDe x n) && (esMultiploDe y n) && (esMultiploDe z n) = x + y + z
+                                | (esMultiploDe x n) && (esMultiploDe y n) && not(esMultiploDe z n) = x + y
+                                | (esMultiploDe x n) && not(esMultiploDe y n) && (esMultiploDe z n) = x + z
+                                | not(esMultiploDe x n) && (esMultiploDe y n) && (esMultiploDe z n) =  y + z
+                                | esMultiploDe x n = x
+                                | esMultiploDe y n = y
+                                | esMultiploDe z n = n
+                                | otherwise = 0
+
+crearPar :: a -> b -> (a, b)
+crearPar a b = (a, b)
+
+invertir :: (a, b) -> (b, a)
+invertir a = (snd a, fst a)
+
+
+
+f:: Int -> Int
+f n | n <= 7 = n^2
+    | n > 7 = 2*n-1
+
+
+g:: Int -> Int
+g n | mod n 2 == 0 = div n 2
+    | otherwise = 3*n+1
+
+todosMenores:: (Int,Int,Int) -> Bool
+todosMenores (a,b,c) = (f(a) > g(b)) && (f(b) > g(b)) && (f(c) > g(c))
+
+distanciaManhattan:: (Float, Float, Float) -> (Float, Float, Float) -> Float
+distanciaManhattan (x1,x2,x3) (y1,y2,y3) = (abs(x1 - y1) + abs(x2 - y2) + abs(x3 - y3))

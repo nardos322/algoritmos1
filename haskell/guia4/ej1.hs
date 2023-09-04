@@ -19,10 +19,8 @@ esDivisible a b | a - b < 0 = False
                 | otherwise = esDivisible(a-b) b
 
 
-sumaImpares:: Integer -> Integer
-sumaImpares 0 = 0
-sumaImpares n   | n < 0 = 0
-                | n > 0 = nEsimoImpar n + sumaImpares(n-1)
+sumaImpares:: Int
+*Main> iesimoDigito 154 3 n > 0 = nEsimoImpar n + sumaImpares(n-1)
 
 nEsimoImpar:: Integer -> Integer
 nEsimoImpar n = n*2-1

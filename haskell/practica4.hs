@@ -73,9 +73,5 @@ esCapicua n | cantDeDigitos n == 1 = True
 
 
 sacarPrimero:: Integer -> Integer
-sacarPrimero n  | cantDeDigitos n == 6 = mod n 100000
-                | cantDeDigitos n == 5 = mod n 10000
-                | cantDeDigitos n == 4 = mod n 1000
-                | cantDeDigitos n == 3 = mod n 100
-                | cantDeDigitos n == 2 = mod n 10
+sacarPrimero n  | cantDeDigitos n > 1 = mod n (10^((cantDeDigitos n) - 1))
                 | cantDeDigitos n == 1 = 0

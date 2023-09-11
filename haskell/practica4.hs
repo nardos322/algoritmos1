@@ -1,3 +1,4 @@
+module Practica4 where
 {-Hlint ignore-}
 
 sumatoriaInterna:: Integer -> Integer -> Integer
@@ -75,3 +76,24 @@ esCapicua n | cantDeDigitos n == 1 = True
 sacarPrimero:: Integer -> Integer
 sacarPrimero n  | cantDeDigitos n > 1 = mod n (10^((cantDeDigitos n) - 1))
                 | cantDeDigitos n == 1 = 0
+
+
+menorDivisor:: Integer -> Integer
+menorDivisor n = menorDivisorDesde n 2
+
+menorDivisorDesde:: Integer -> Integer -> Integer
+menorDivisorDesde n k   | mod n k == 0 = k
+                        | n == k = n
+                        | otherwise = menorDivisorDesde n (k+1)
+
+
+esPrimo:: Integer-> Bool
+esPrimo n = menorDivisor n == n
+
+
+sonCoprimos:: Integer -> Integer -> Bool
+sonCoprimos _ 1 = True
+sonCoprimos 1 _ = True
+sonCoprimos a b | (a > b) && mod a (menorDivisor b) /= 0 && (menorDivisor b) == b = True
+                | (a > b) && mod a (menorDivisor b) /=0 && (menorDivisor b) /= b
+               

@@ -94,6 +94,19 @@ esPrimo n = menorDivisor n == n
 sonCoprimos:: Integer -> Integer -> Bool
 sonCoprimos _ 1 = True
 sonCoprimos 1 _ = True
-sonCoprimos a b | (a > b) && mod a (menorDivisor b) /= 0 && (menorDivisor b) == b = True
-                | (a > b) && mod a (menorDivisor b) /=0 && (menorDivisor b) /= b
-               
+sonCoprimos a b | (a > b) && mod a (menorDivisor b) == 0 = False
+                | (a > b) && mod a (menorDivisor b) /= 0 = sonCoprimos a (div b (menorDivisor b))
+                | (b > a) && mod b (menorDivisor a) == 0 = False
+                | (b > a) && mod b (menorDivisor a) /= 0 = sonCoprimos b (div a (menorDivisor a))
+
+nEsimoPrimo:: Integer -> Integer
+nEsimoPrimo n = (nEsimoPrimoHasta n 0 2)
+
+nEsimoPrimoHasta:: Integer -> Integer -> Integer -> Integer
+nEsimoPrimoHasta n i k  | n == i = k-1
+                        | esPrimo k = (nEsimoPrimoHasta n (i+1) (k+1))
+                        | not(esPrimo k) = (nEsimoPrimoHasta n i (k+1))
+                        
+                       
+                        
+                        

@@ -1,4 +1,6 @@
 import Practica4
+import System.Win32 (COORD(yPos))
+
 {-Hlint ignore-}
 
 longitud:: [t] -> Integer
@@ -16,6 +18,17 @@ principio (x:xs) = x:principio(xs)
 pertenece:: (Eq t) => t -> [t] -> Bool
 pertenece n [] = False
 pertenece n (x:xs) = n == x || pertenece n xs
+
+todosIguales:: (Eq t) => [t] -> Bool
+todosIguales [x] = True
+todosIguales (x:y:xs)   | x == y = todosIguales(y:xs)
+                        | otherwise = False
+
+todosDistintos:: (Eq t) => [t] -> Bool
+todosDistintos [] = True
+todosDistintos (x:xs)   | pertenece x xs = False
+                        | otherwise = todosDistintos xs
+
 
 reverso::(Eq t) => [t] -> [t]
 reverso [x] = [x]
@@ -40,6 +53,23 @@ eliminar::(Eq t) => t -> [t] -> [t]
 eliminar n [] = []
 eliminar n (x:xs)   | n == x = xs
                     | otherwise = x:(eliminar n xs)
+
+quitarTodos:: (Eq t) => t -> [t] -> [t]
+quitarTodos n [] = []
+quitarTodos n (x:xs)    | n == x = quitarTodos n (xs)
+                        | otherwise = x:(quitarTodos n xs)
+
+eliminarRepetidos:: (Eq t) => [t] -> [t]
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs)    | hayRepetidos (x:xs) = x:eliminarRepetidos(quitarTodos x xs)
+                            | otherwise = (x:xs)
+
+mismosElementos:: (Eq t) => [t] -> [t] -> Bool
+mismosElementos _ [] = True
+mismosElementos [] _ = True
+mismosElementos (x:xs) (y:ys)   | pertenece x (y:ys) || pertenece y (x:xs) = mismosElementos xs (y:ys) && mismosElementos ys (x:xs)
+
+
 
 descomponerEnPrimos:: [Integer] -> [[Integer]]
 descomponerEnPrimos [] = []

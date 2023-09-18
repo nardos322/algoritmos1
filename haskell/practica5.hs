@@ -1,5 +1,17 @@
-import Practica4
+--import Practica4--
 
+
+menorDivisor:: Integer -> Integer
+menorDivisor n = menorDivisorDesde n 2
+
+menorDivisorDesde:: Integer -> Integer -> Integer
+menorDivisorDesde n k   | mod n k == 0 = k
+                        | n == k = n
+                        | otherwise = menorDivisorDesde n (k+1)
+
+
+esPrimo:: Integer-> Bool
+esPrimo n = menorDivisor n == n
 
 {-Hlint ignore-}
 
@@ -84,3 +96,33 @@ descomponer:: Integer -> [Integer]
 descomponer n   | esPrimo n = [n] 
                 | otherwise = (menorDivisor n):(descomponer(div n (menorDivisor n)))
 
+sumatoria:: [Integer] -> Integer
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
+
+productoria:: [Integer] -> Integer
+productoria [] = 1
+productoria (x:xs) = x*productoria xs
+
+sumarN:: Integer -> [Integer] -> [Integer]
+sumarN n [] = []
+sumarN n (x:xs) = n+x:(sumarN n xs)
+
+
+sumarElPrimero:: [Integer] -> [Integer]
+sumarElPrimero (x:xs) = sumarN x (x:xs)
+
+sumarElUltimo:: [Integer] -> [Integer]
+sumarElUltimo (x:xs) = sumarN (ultimo(x:xs)) (x:xs)
+
+pares::[Integer] -> [Integer]
+pares [] = []
+pares (x:xs)    | mod x 2 == 0 = x:pares xs 
+                | otherwise = pares xs
+
+multiplosDeN:: Integer -> [Integer] -> [Integer]
+multiplosDeN _ [] = []
+multiplosDeN n (x:xs)   | mod x n == 0 = x:multiplosDeN n xs
+                        | otherwise = multiplosDeN n xs
+
+                        

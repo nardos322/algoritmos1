@@ -1,5 +1,5 @@
 import Practica4
-import System.Win32 (COORD(yPos))
+
 
 {-Hlint ignore-}
 
@@ -65,9 +65,13 @@ eliminarRepetidos (x:xs)    | hayRepetidos (x:xs) = x:eliminarRepetidos(quitarTo
                             | otherwise = (x:xs)
 
 mismosElementos:: (Eq t) => [t] -> [t] -> Bool
-mismosElementos _ [] = True
-mismosElementos [] _ = True
-mismosElementos (x:xs) (y:ys)   | pertenece x (y:ys) || pertenece y (x:xs) = mismosElementos xs (y:ys) && mismosElementos ys (x:xs)
+mismosElementos a b = (mismosElementos' a b) && (mismosElementos' b a)
+
+
+mismosElementos':: (Eq t) => [t] -> [t] -> Bool
+mismosElementos' [] _ = True
+mismosElementos' (x:xs) ys  | pertenece x ys = mismosElementos' xs ys
+                            | otherwise = False
 
 
 

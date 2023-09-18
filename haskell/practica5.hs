@@ -32,7 +32,7 @@ todosDistintos (x:xs)   | pertenece x xs = False
 
 reverso::(Eq t) => [t] -> [t]
 reverso [x] = [x]
-reverso (x:xs) = ultimo(xs):reverso(eliminar(ultimo xs) (x:xs))
+reverso (x:xs) = reverso xs ++ [x]
 
 hayRepetidos:: (Eq t) => [t] -> Bool
 hayRepetidos [] = False
@@ -73,7 +73,8 @@ mismosElementos' [] _ = True
 mismosElementos' (x:xs) ys  | pertenece x ys = mismosElementos' xs ys
                             | otherwise = False
 
-
+capicua:: (Eq t) => [t] -> Bool
+capicua xs = xs == reverso(xs)
 
 descomponerEnPrimos:: [Integer] -> [[Integer]]
 descomponerEnPrimos [] = []

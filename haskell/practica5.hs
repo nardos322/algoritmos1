@@ -125,4 +125,14 @@ multiplosDeN _ [] = []
 multiplosDeN n (x:xs)   | mod x n == 0 = x:multiplosDeN n xs
                         | otherwise = multiplosDeN n xs
 
-                        
+
+sacarBlancosRepetidos:: [Char] -> [Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos (x:[]) = [x]
+sacarBlancosRepetidos (x:y:xs)  | x == ' ' && y == ' ' = sacarBlancosRepetidos (y:xs)
+                                | otherwise = x:sacarBlancosRepetidos (y:xs)
+
+contarPalabras:: [Char] -> Integer
+contarPalabras [x] = 1
+contarPalabras (x:xs)   | x == ' ' = 1 + contarPalabras(sacarBlancosRepetidos xs)
+                        | otherwise = contarPalabras(sacarBlancosRepetidos xs)

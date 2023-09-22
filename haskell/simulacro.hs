@@ -1,3 +1,5 @@
+{-Hlint ignore-}
+
 relacionesValidas:: [(String,String)] -> Bool
 relacionesValidas [] = True
 relacionesValidas (x:xs)  | incluido [x] (xs) || incluidoTuplas x xs || fst x == snd x = False
@@ -61,8 +63,8 @@ sonIguales xs ys = incluido xs ys && incluido ys xs
 personaConMasAmigos:: [(String,String)] -> String
 personaConMasAmigos xs = personaConMasAmigosAux (personas xs) xs
 
-cantDeAmigos:: String -> [(String,String)] -> Int
-cantDeAmigos p rel = length(amigosDe p rel)
+cantDeAmigos:: String -> [(String,String)] -> Integer
+cantDeAmigos p rel = longitud(amigosDe p rel)
 
 
 personaConMasAmigosAux:: [String] -> [(String,String)] -> String

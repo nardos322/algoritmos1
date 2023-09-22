@@ -133,6 +133,43 @@ sacarBlancosRepetidos (x:y:xs)  | x == ' ' && y == ' ' = sacarBlancosRepetidos (
                                 | otherwise = x:sacarBlancosRepetidos (y:xs)
 
 contarPalabras:: [Char] -> Integer
-contarPalabras [x] = 1
-contarPalabras (x:xs)   | x == ' ' = 1 + contarPalabras(sacarBlancosRepetidos xs)
-                        | otherwise = contarPalabras(sacarBlancosRepetidos xs)
+contarPalabras (x:xs) = contarEspacios(sacarEspacioInicioFin(sacarBlancosRepetidos (x:xs))) + 1
+                       
+
+contarEspacios:: [Char] -> Integer
+contarEspacios [] = 0
+contarEspacios (x:xs)   | x == ' ' = 1 + contarEspacios(xs)
+                        | otherwise = contarEspacios(xs)                         
+
+sacarEspacioInicio:: [Char] -> [Char]
+sacarEspacioInicio [] = []
+sacarEspacioInicio (x:xs)   | x == ' ' = sacarEspacioInicio (sacarBlancosRepetidos xs)
+                            | otherwise = sacarBlancosRepetidos (x:xs)
+
+sacarEspacioInicioFin:: [Char] -> [Char]
+sacarEspacioInicioFin [] = []
+sacarEspacioInicioFin (x:xs)    | ultimo (x:xs) == ' ' = sacarEspacioInicioFin(principio (x:xs))
+                                | otherwise = sacarEspacioInicio(x:xs)
+
+
+palabras:: [Char] -> [[Char]]
+palabras [] = []
+palabras (x:xs) = primeraPalabra(sacarEspacioInicio(x:xs)):palabras(sacarPrimeraPalabra(sacarEspacioInicio(x:xs)))
+
+
+primeraPalabra:: [Char] -> [Char]
+primeraPalabra [] = []
+primeraPalabra (x:xs)   | x == ' ' = []
+                        | otherwise = x:(primeraPalabra xs)
+
+sacarPrimeraPalabra:: [Char] -> [Char]
+sacarPrimeraPalabra [] = []
+sacarPrimeraPalabra (x:xs)  | x == ' ' =  sacarEspacioInicioFin xs
+                            | otherwise = sacarPrimeraPalabra xs
+
+
+aplanar :: [[Char]] -> [Char]
+aplanar [] = []
+aplanar (xs:xss) = xs ++ (aplanar xss)
+
+

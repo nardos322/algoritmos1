@@ -168,6 +168,14 @@ sacarPrimeraPalabra (x:xs)  | x == ' ' =  sacarEspacioInicioFin xs
                             | otherwise = sacarPrimeraPalabra xs
 
 
+palabraMasLarga:: [Char] -> [Char]
+palabraMasLarga (x:xs) = palabraMasLargaAux(palabras((x:xs)))
+
+palabraMasLargaAux:: [[Char]] -> [Char]
+palabraMasLargaAux [x] = x
+palabraMasLargaAux (xs:xy:xss)  | longitud(sacarEspacioInicioFin(xs)) >= longitud(sacarEspacioInicioFin(xy))  = palabraMasLargaAux(xs:xss)
+                                | otherwise = palabraMasLargaAux(xy:xss)
+
 aplanar :: [[Char]] -> [Char]
 aplanar [] = []
 aplanar (xs:xss) = xs ++ (aplanar xss)

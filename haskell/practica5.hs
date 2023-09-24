@@ -180,4 +180,16 @@ aplanar :: [[Char]] -> [Char]
 aplanar [] = []
 aplanar (xs:xss) = xs ++ (aplanar xss)
 
+aplanarConBlancos:: [[Char]] -> [Char]
+aplanarConBlancos [] = []
+aplanarConBlancos (xs:xss) = xs ++ [' '] ++  sacarEspacioInicioFin(aplanarConBlancos(xss))
 
+aplanarConNBlancos:: [[Char]] -> Integer -> [Char]
+aplanarConNBlancos [] n = []
+aplanarConNBlancos (xs:xss) n   | n /= 0 = xs ++ [' '] ++  sacarEspacioInicioFin(aplanarConNBlancos xss (n-1))
+                                | otherwise = xs ++ sacarEspacioInicioFin(aplanarConNBlancos xss n)
+
+
+sumaAcumulada:: (Num t) => [t] -> [t]
+sumaAcumulada [] = []
+sumaAcumulada (x:xs) = sumatoria(xs)

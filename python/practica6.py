@@ -50,8 +50,6 @@ def cantidad_de_pizzas(comensales: int, min_cant_porciones: int) -> int:
         return 1
     return ((comensales*min_cant_porciones)//8) + 1
 
-print(cantidad_de_pizzas(2,3))
-
 
 def alguno_es_0(n1: int, n2: int) -> bool:
     return n1 == 0 or n2 == 0
@@ -94,7 +92,47 @@ def devolver_el_doble_si_es_par(n: int) -> int:
         return n*2
     else:
         return n
+    
+def devolver_el_valor_si_es_par_sino_el_que_sigue(n: int) -> int:
+    if(n%2 == 0):
+        return n
+    else:
+        return n+1   
+
+def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(n: int) -> int:
+    if(n%3 == 0):
+        return n*2
+    if(n%9 == 0):
+        return n*3
+    else:
+        return n    
+        
  
+def lindo_nombre(name: str) -> str:
+    if len(name) >= 5:
+        return "tu nombre tiene muchas letras"
+    else:
+        return "tu nombre tiene menos de 5 caracteres"
+
+def el_rango(n: int) -> int:
+    if n < 5:
+        print("el numero es menor a 5")
+    elif n>=10 and n<=20:
+        print("el numero esta entre 10 y 20")
+    elif n>20:
+        print("el numero es mayor a 20")
+
+
+def vas_de_vacaciones_o_te_toca_trabajar(sexo: str, edad: int) -> str:
+    if(sexo == 'm' and edad >= 65) or (sexo == 'f' and edad >= 60):
+        return 'Anda de vacaciones'
+    elif(sexo == 'm' and edad >= 18 and edad < 65) or (sexo == 'f' and edad >=18 and edad < 60):
+        return 'te toca ir a trabajar'        
+    else:
+        return 'anda de vacaiones'                
+
+
+
 
 def imprimir_10veces() -> int:
     i: int = 10
@@ -110,6 +148,7 @@ def imprimir_10_eco()-> str:
     n: int = 0
     for n in range(n,10):
         print(n,"eco")
+
             
 
 
@@ -142,3 +181,15 @@ def viaje_en_el_tiempo(año_partida: int, año_llegada: int) -> str:
         print(f"viajaste {i} años en el tiempo, estamos en el año {año_partida-1}")
         año_partida -= 1
         i += 1
+
+def viaje_aristoteles(año_partida: int)-> str:
+        año_aristoteles: int = -384
+        i:int = 20
+        while not(año_partida <= año_aristoteles):
+            
+            
+            print(f"viajaste {i} años en el tiempo, estamos en el año {año_partida-20}")
+            año_partida -= 20
+            i += 20
+
+

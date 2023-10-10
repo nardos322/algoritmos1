@@ -81,6 +81,7 @@ def es_bisiesto(year: int) -> bool:
     return year%4 == 0 and not(year%100 == 0)
 
 
+
 # Ejercicio 4
 
 def peso_pino(altura: int) -> int:

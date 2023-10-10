@@ -96,7 +96,7 @@ descomponer:: Integer -> [Integer]
 descomponer n   | esPrimo n = [n] 
                 | otherwise = (menorDivisor n):(descomponer(div n (menorDivisor n)))
 
-sumatoria:: [Integer] -> Integer
+sumatoria:: (Num t) => [t] -> t
 sumatoria [] = 0
 sumatoria (x:xs) = x + sumatoria xs
 
@@ -192,4 +192,10 @@ aplanarConNBlancos (xs:xss) n   | n /= 0 = xs ++ [' '] ++  sacarEspacioInicioFin
 
 sumaAcumulada:: (Num t) => [t] -> [t]
 sumaAcumulada [] = []
-sumaAcumulada (x:xs) = sumatoria(xs)
+sumaAcumulada (x:xs) =  (x:xs)
+
+
+
+numeroSiguiente:: (Num t) => [t] -> t
+numeroSiguiente [x] = x 
+numeroSiguiente (x:y:xs) = y

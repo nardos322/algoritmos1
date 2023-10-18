@@ -79,11 +79,48 @@ def borrar_repetidos(s: list):
             res.append(s[i])
     return res        
 
-def mis_estudiantes()
+def mis_estudiantes():
+   
+    name = " "
 
-print(borrar_repetidos(["h","o","h","o","i"]))
+    mis_estudiantes: list = []
+
+    while not (name == "listo"):
+        name: str = input('nombre de estudiantes: ')
+        if name == "listo":
+            return mis_estudiantes
+        mis_estudiantes.append(name)
+        
+   
+def pertenece_a_cada_uno(s: list, elem: int) -> list:
+
+    res = []
+    for sublista in s:
+        if pertenece(sublista, elem):
+            res.append(True)
+        else:
+            res.append(False)    
+    return res
+
+
+def es_matriz(s: list) -> bool:
+    
+    inicio: int = len(s[0]) 
+    for i in range(len(s)):
+        if inicio != len(s[i]):
+            return False
+    return True    
+    
+
+
+def filas_ordenadas(s: list) -> list:
+    res = []
+    for i in s:
+        if ordenados(i):
+            res.append(True)
+        else:
+            res.append(False)
+    return res
 
 
 
-print(es_palindromo('A la torre derrótala'))
-print(es_palindromo('reconocer'))

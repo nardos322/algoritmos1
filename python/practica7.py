@@ -71,6 +71,18 @@ def formatear_texto(text: str) -> str:
 
 
 
+def borrar_repetidos(s: list):
+    res: list = []
+    print("hola")
+    for i in range(len(s)):
+        if not pertenece(res, s[i]):
+            res.append(s[i])
+    return res        
+
+def mis_estudiantes()
+
+print(borrar_repetidos(["h","o","h","o","i"]))
+
 
 
 print(es_palindromo('A la torre derrótala'))

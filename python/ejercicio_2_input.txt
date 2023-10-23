@@ -1,5 +1,3 @@
-qasjdnajasndjasnd
-#hola
-asdasdasdaswdasd
-#holaasda
-que ondaasdas
+Esto actualiza el valor del diccionario si se encuentra la clave; de lo contrario, se agrega una nueva asignación. 
+Para insertar o actualizar simultáneamente varios pares clave-valor, 
+puede crear un nuevo diccionario de clave-valor que debe actualizarse o insertarse.

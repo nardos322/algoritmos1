@@ -84,7 +84,7 @@ def jugar_carton_de_bingo(carton: list, bolillero: Queue) -> int:
     jugadas = 0
     while not bolillero.empty():
         numero = bolillero.get()
-           
+        
         if pertenece(carton, numero):
             carton.remove(numero)
         else:
@@ -110,4 +110,31 @@ def agruparPorLongitud(nombre_de_archivo_input: str) -> dict:
     return res            
 
 
-print(jugar_carton_de_bingo([50], bolillero))
+def palabra_mas_frecuente(nombre_archivo_input: str):
+    archivo_input = open(nombre_archivo_input,'r')
+    lista_palabras = []
+    diccionario = {}
+
+    for line in archivo_input.readlines():
+        
+        lista_palabras += line.split()
+
+    for word in lista_palabras:
+        
+        diccionario[word] = word
+
+    return diccionario
+    
+
+
+x = {
+    'name': 'nahuel',
+    'edad': 84
+}
+
+
+
+
+print(palabra_mas_frecuente('ejercicio_2_input.txt')) 
+
+

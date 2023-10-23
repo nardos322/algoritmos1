@@ -1,3 +1,3 @@
-Esto actualiza el valor del diccionario si se encuentra la clave; de lo contrario, se agrega una nueva asignación. 
+Esto actualiza el valor h, diccionario si se encuentra la clave; de lo contrario, se agrega una nueva asignación. 
 Para insertar o actualizar simultáneamente varios pares clave-valor, 
-puede crear un nuevo diccionario de clave-valor que debe actualizarse o insertarse.
+puede crear un nuevo diccionario de clave-valor que debe actualizarse o insertarse esto del h.

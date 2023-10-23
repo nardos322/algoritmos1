@@ -113,25 +113,39 @@ def agruparPorLongitud(nombre_de_archivo_input: str) -> dict:
 def palabra_mas_frecuente(nombre_archivo_input: str):
     archivo_input = open(nombre_archivo_input,'r')
     lista_palabras = []
+    apariciones = []
+    texto_formateado = []
+
     diccionario = {}
 
     for line in archivo_input.readlines():
         
         lista_palabras += line.split()
-
+    
+    # este for me formatea las palabras que esan en lista_palabras, quita las mayusculas, '.' etc etc
     for word in lista_palabras:
         
-        diccionario[word] = word
+        word = word.lower()
+        word = word.replace('.','')
+        word = word.replace(',','')
+        texto_formateado.append(word)
+        
+    for word in texto_formateado:
+        
+        if word in diccionario:
+            diccionario[word] += 1
+        else:
+            diccionario[word] = 1
 
+    for i in diccionario.values():
+        
+        apariciones.append(i)
+        print(apariciones)
+        
+    
+    
     return diccionario
     
-
-
-x = {
-    'name': 'nahuel',
-    'edad': 84
-}
-
 
 
 

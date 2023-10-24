@@ -1,3 +1,5 @@
-qasjdnajasndjasnd
-asdasdasdaswdasd
-que ondaasdas
+puede crear un nuevo diccionario de clave-valor que debe actualizarse o insertarse esto del esto esto.
+Para insertar o actualizar simultáneamente varios pares clave-valor, 
+
+Esto actualiza el valor h, diccionario si se encuentra la clave; de lo contrario, se agrega una nueva asignación. 
+

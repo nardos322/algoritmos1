@@ -9,13 +9,14 @@ def pertenece(n: float, lista: list) -> bool:
     return False
 
 def contar_lineas(nombre_archivo: str) -> int:
-    archivo: str = open(nombre_archivo, 'w')
-    archivo = archivo.readlines()
-    archivo.close()
+    archivo_input: str = open(nombre_archivo, 'r')
+    lineas: list = []
 
-    return len(archivo)
-
-
+    for line in archivo_input.readlines():
+        lineas.append(line)
+    return len(lineas)    
+    
+ 
 
 
 def existe_palabra(palabra_input: str, nombre_archivo: str) -> bool:
@@ -88,4 +89,3 @@ def lista_llegadas(b,c):
             
     return llegadas
 
-print(lista_llegadas(b,c))

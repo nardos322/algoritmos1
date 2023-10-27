@@ -1,6 +1,10 @@
 from queue import LifoQueue 
 from queue import Queue
 from random import shuffle
+import random
+
+
+
 
 def clonar_sin_comentarios(nombre_archivo_input: str) -> None:
     archivo_input = open(nombre_archivo_input, 'r')
@@ -312,24 +316,157 @@ x.put(5)
 
 
 def pila_copy(p: LifoQueue) -> LifoQueue:
-    elements = []
-    p_copy = LifoQueue()
+    elements: list = []
+    p_copy: LifoQueue = LifoQueue()
     while not p.empty():
         elements.append(p.get())
     for i in range(len(elements)-1,-1,-1):
+            p.put(elements[i])
             p_copy.put(elements[i])
     return p_copy        
     
 
 def cantidad_de_elementos(p: LifoQueue)-> int:
+    p_copy: LifoQueue = pila_copy(p)
+    contador: int = 0
     
-    contador = 0
-
-    while not p.empty():
-        elemento = p.get()
+    while not p_copy.empty():
+        p_copy.get()
         contador += 1
+    print(list(p.queue))
     return contador    
 
 
-#print(cantidad_de_elementos(x))
-print(pila_copy(x))
+def generar_nros_al_azar(n: int, desde: int, hasta: int) -> LifoQueue:
+    pila: LifoQueue = LifoQueue()
+
+    for i in range(n):
+        pila.put(random.randint(desde,hasta))
+        
+    print(list(pila.queue))
+    return pila
+
+
+
+
+def esta_bien_balanceada(s: str) -> bool:
+    pila = LifoQueue()
+
+    for i in s:
+        pila.put(i)
+
+
+    while not pila.empty():
+        value = pila.get()
+        if value == ')':
+
+            print(value)
+   
+
+
+
+
+
+def generar_nros_al_azar_colas(n: int, desde: int, hasta: int):
+    cola: Queue = Queue()
+
+    for i in range(n):
+        cola.put(random.randint(desde, hasta))
+    
+    print(list(cola.queue))
+
+    return cola    
+
+
+c = Queue()
+c.put((1,'n','c'))
+c.put(43634)
+c.put(4)
+c.put(6)
+c.put(25)
+
+
+
+def cantidad_elementos_colas(c: Queue) -> int:
+    elementos: list = []
+    contador: int = 0
+
+    while not c.empty():
+        elementos.append(c.get())
+        contador += 1
+    
+    
+    # recontruccion de la cola
+    for i in range(len(elementos)):
+        c.put(elementos[i])
+    
+    return contador    
+
+
+def buscar_el_maximo_colas(c: Queue) -> int:
+    elementos: list = []
+
+    while not c.empty():
+        elementos.append(c.get())
+    
+
+    for i in range(len(elementos)):
+        c.put(elementos[i])
+    
+    return max(elementos)    
+
+pacientes = Queue()
+pacientes.put((1,'n','cirujia'))
+pacientes.put((6,'a','otorrino'))
+pacientes.put((4,'x','dermatologo'))
+pacientes.put((3,'y','oftalmologia'))
+pacientes.put((3,'y','oftalmologia'))
+
+def n_pacientes_urgentes(pacientes: Queue) -> int:
+    lista_pacientes: list = []
+    contador: int = 0
+
+    while not pacientes.empty():
+        lista_pacientes.append(pacientes.get())
+      
+    for i in range(len(lista_pacientes)):
+        if lista_pacientes[i][0] <= 3:
+            contador += 1
+
+    for i in range(len(lista_pacientes)):
+        pacientes.put(lista_pacientes[i]) 
+
+    print(list(pacientes.queue))        
+    return contador
+
+
+clientes_cola = Queue()
+clientes_cola.put(('n',1, True, False))
+clientes_cola.put(('a',4, False, False))
+clientes_cola.put(('x',2, True, True))
+
+def a_clientes(clientes_cola: Queue) -> Queue:
+
+    cola_de_atencion = Queue()
+    lista_clientes: list = []
+
+    while not clientes_cola.empty():
+        lista_clientes.append(clientes_cola.get())
+    
+    for i in range(len(lista_clientes)):
+        
+        if lista_clientes[i][3] == True:
+            cola_de_atencion.put(lista_clientes[i])
+            lista_clientes.remove(lista_clientes[i])
+    
+      
+    for i in range(len(lista_clientes)):
+        
+        if lista_clientes[i][2] == True:
+            cola_de_atencion.put(lista_clientes[i])
+            lista_clientes.remove(lista_clientes[i])
+    
+
+    print(list(cola_de_atencion.queue))
+
+a_clientes(clientes_cola)

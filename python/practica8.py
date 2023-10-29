@@ -350,18 +350,29 @@ def generar_nros_al_azar(n: int, desde: int, hasta: int) -> LifoQueue:
 
 
 def esta_bien_balanceada(s: str) -> bool:
-    pila = LifoQueue()
+    
+    parentesis: list = []
 
     for i in s:
-        pila.put(i)
+        if i == '(' or i == ')':
+            parentesis.append(i)
+    
+    
+    if len(parentesis)%2 == 0 and not parentesis[0] == ')':
+       
+       while not len(parentesis) == 0:
+            for i in parentesis:
+               parentesis_inicio = i
+               if i == ')':
+                   parentesis.remove(parentesis_inicio)
+                   parentesis.remove(i)
+    print(parentesis)       
+       
 
+    
+        
 
-    while not pila.empty():
-        value = pila.get()
-        if value == ')':
-
-            print(value)
-   
+print(esta_bien_balanceada('2+(2+2)*2'))
 
 
 
@@ -488,4 +499,3 @@ def a_clientes(clientes_cola: Queue) -> Queue:
     
 
 
-a_clientes(clientes_cola)

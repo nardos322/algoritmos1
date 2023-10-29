@@ -442,6 +442,10 @@ def n_pacientes_urgentes(pacientes: Queue) -> int:
 
 clientes_cola = Queue()
 clientes_cola.put(('n',1, True, False))
+clientes_cola.put(('e',9, False, False))
+clientes_cola.put(('q',87, False, False))
+clientes_cola.put(('hu',23, True, True))
+clientes_cola.put(('j',7, True, False))
 clientes_cola.put(('a',4, False, False))
 clientes_cola.put(('x',2, True, True))
 
@@ -449,24 +453,39 @@ def a_clientes(clientes_cola: Queue) -> Queue:
 
     cola_de_atencion = Queue()
     lista_clientes: list = []
-
+    clientes_con_prioridad: list = []
+    clientes_con_cuenta: list = []
+    clientes_sin_cuenta: list = []
+    
     while not clientes_cola.empty():
         lista_clientes.append(clientes_cola.get())
     
+    # aca los elementos de lista_clientes no estan ordenados por prioridad, separo en listas a los clientes con prioridad,
+    #para despues ordenarlos 
     for i in range(len(lista_clientes)):
         
         if lista_clientes[i][3] == True:
-            cola_de_atencion.put(lista_clientes[i])
-            lista_clientes.remove(lista_clientes[i])
+            clientes_con_prioridad.append(lista_clientes[i])
+            
+        elif lista_clientes[i][2] == True:
+            clientes_con_cuenta.append(lista_clientes[i]) 
+             
+        else:
+            clientes_sin_cuenta.append(lista_clientes[i])
+
+    #reescribo  lista_clientes con los clientes ahora ordenados por prioridad 
+    #ejemplo a = [2,4,3,1], b=[1,2], c = [3,4] al hacer a = b + c las listas se concatenan
+    # me quedaria a = [1,2,3,4]
+    lista_clientes = clientes_con_prioridad + clientes_con_cuenta + clientes_sin_cuenta
     
-      
+    # como los elementos de lista_clientes ahora estan ordenados por prioridad agrego sus elementos
+    # a cola_de_atencion
     for i in range(len(lista_clientes)):
-        
-        if lista_clientes[i][2] == True:
-            cola_de_atencion.put(lista_clientes[i])
-            lista_clientes.remove(lista_clientes[i])
+        cola_de_atencion.put(lista_clientes[i])
+    
+    print(list(cola_de_atencion.queue))
+    return cola_de_atencion
     
 
-    print(list(cola_de_atencion.queue))
 
 a_clientes(clientes_cola)

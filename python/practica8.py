@@ -492,35 +492,34 @@ def a_clientes(clientes_cola: Queue) -> Queue:
     return cola_de_atencion
 
 
-def promedio_estudiante(legajo: str) -> float:
+legajo = '2'
 
-    file_notas_alumnos: str = open('notas.csv', 'r')
-    notas_alumnos = []
-    notas_del_alumno = []
+def promedio_estudiante(legajo: str) -> float:
     
+    file_notas_alumnos: str = open('notas.csv', 'r')
+    datos_alumnos = []
+    notas_de_todos_alumnos = []
+    notas_del_alumno = []
     for line in file_notas_alumnos.readlines():
             
-            notas_alumnos.append(line)
-    
-    notas = []
-
+            datos_alumnos.append(line)
     
 
-    for i in range(0, len(notas_alumnos) - 1):
-        notas.append(notas_alumnos[i][len(notas_alumnos[i])-2])
-    
-    #saco el ultimo salto de linea    
-    notas.append(notas_alumnos[len(notas_alumnos)-1][-1])
-    
+    for notas in datos_alumnos:
+        notas_de_todos_alumnos.append(notas.split(','))
 
-
-    print(notas)    
+    
+    for i in range(len(notas_de_todos_alumnos)):
         
+        if legajo == notas_de_todos_alumnos[i][0]:
+            notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
+            
+
+    print(notas_del_alumno)
 
 
-   
 
 
-promedio_estudiante('2')    
+promedio_estudiante('2')
 
 

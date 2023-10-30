@@ -352,27 +352,25 @@ def generar_nros_al_azar(n: int, desde: int, hasta: int) -> LifoQueue:
 def esta_bien_balanceada(s: str) -> bool:
     
     parentesis: list = []
+    parentesis_de_apertura: list = []
+    parentesis_de_cierre: list = []
+    
 
     for i in s:
         if i == '(' or i == ')':
             parentesis.append(i)
+    if  not (parentesis[0] == '('and len(parentesis)%2 == 0):
+        return False
+    for i in parentesis:
+        if i == '(':
+            parentesis_de_apertura.append(i)
+        else:
+            parentesis_de_cierre.append(i)    
+    return len(parentesis_de_apertura) == len(parentesis_de_cierre)
     
     
-    if len(parentesis)%2 == 0 and not parentesis[0] == ')':
+              
        
-       while not len(parentesis) == 0:
-            for i in parentesis:
-               parentesis_inicio = i
-               if i == ')':
-                   parentesis.remove(parentesis_inicio)
-                   parentesis.remove(i)
-    print(parentesis)       
-       
-
-    
-        
-
-print(esta_bien_balanceada('2+(2+2)*2'))
 
 
 

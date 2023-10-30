@@ -492,7 +492,7 @@ def a_clientes(clientes_cola: Queue) -> Queue:
     return cola_de_atencion
 
 
-legajo = '2'
+
 
 def promedio_estudiante(legajo: str) -> float:
     
@@ -508,18 +508,17 @@ def promedio_estudiante(legajo: str) -> float:
     for notas in datos_alumnos:
         notas_de_todos_alumnos.append(notas.split(','))
 
-    
+   
     for i in range(len(notas_de_todos_alumnos)):
-        
-        if legajo == notas_de_todos_alumnos[i][0]:
-            notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
             
+            if f"'{legajo}'"== notas_de_todos_alumnos[i][0]:
+                notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
+        
+    
 
-    print(notas_del_alumno)
 
 
 
 
-promedio_estudiante('2')
 
 

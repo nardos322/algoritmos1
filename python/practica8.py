@@ -371,11 +371,6 @@ def esta_bien_balanceada(s: str) -> bool:
     
               
        
-
-
-
-
-
 def generar_nros_al_azar_colas(n: int, desde: int, hasta: int):
     cola: Queue = Queue()
 
@@ -434,6 +429,7 @@ pacientes.put((3,'y','oftalmologia'))
 def n_pacientes_urgentes(pacientes: Queue) -> int:
     lista_pacientes: list = []
     contador: int = 0
+    
 
     while not pacientes.empty():
         lista_pacientes.append(pacientes.get())
@@ -494,6 +490,37 @@ def a_clientes(clientes_cola: Queue) -> Queue:
     
     print(list(cola_de_atencion.queue))
     return cola_de_atencion
+
+
+def promedio_estudiante(legajo: str) -> float:
+
+    file_notas_alumnos: str = open('notas.csv', 'r')
+    notas_alumnos = []
+    notas_del_alumno = []
     
+    for line in file_notas_alumnos.readlines():
+            
+            notas_alumnos.append(line)
+    
+    notas = []
+
+    
+
+    for i in range(0, len(notas_alumnos) - 1):
+        notas.append(notas_alumnos[i][len(notas_alumnos[i])-2])
+    
+    #saco el ultimo salto de linea    
+    notas.append(notas_alumnos[len(notas_alumnos)-1][-1])
+    
+
+
+    print(notas)    
+        
+
+
+   
+
+
+promedio_estudiante('2')    
 
 

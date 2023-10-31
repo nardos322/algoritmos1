@@ -497,28 +497,51 @@ def a_clientes(clientes_cola: Queue) -> Queue:
 def promedio_estudiante(legajo: str) -> float:
     
     file_notas_alumnos: str = open('notas.csv', 'r')
-    datos_alumnos = []
-    notas_de_todos_alumnos = []
-    notas_del_alumno = []
-    for line in file_notas_alumnos.readlines():
-            
-            datos_alumnos.append(line)
+    datos_alumnos: list = []
+    notas_de_todos_alumnos: list = []
+    notas_del_alumno: list = []
+    notas_del_alumno_formateada: list = []
+    notas_del_alumno_formateada_float: list = []
     
-
+    promedio: float = 0
+    
+  
+ 
+    for line in file_notas_alumnos.readlines():
+     
+        datos_alumnos.append(line)
+                
+           
     for notas in datos_alumnos:
         notas_de_todos_alumnos.append(notas.split(','))
 
-   
+     
     for i in range(len(notas_de_todos_alumnos)):
             
-            if f"'{legajo}'"== notas_de_todos_alumnos[i][0]:
-                notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
+        if f"'{legajo}'"== notas_de_todos_alumnos[i][0]:
+            notas_del_alumno.append(notas_de_todos_alumnos[i][-1])
+      
+    
+
+    for i in range(len(notas_del_alumno)):
         
+        notas_del_alumno_formateada.append(notas_del_alumno[i].strip('\n'))
+
+
+    for notas in notas_del_alumno_formateada:
+        notas_del_alumno_formateada_float.append(float(notas))
+        
+    for notas in notas_del_alumno_formateada_float:
+        promedio += notas
+
+    
+    return promedio/len(notas_del_alumno_formateada_float)    
+   
+   
     
 
 
-
-
+print(promedio_estudiante('646/20'))
 
 
 

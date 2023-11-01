@@ -537,11 +537,100 @@ def promedio_estudiante(legajo: str) -> float:
     
     return promedio/len(notas_del_alumno_formateada_float)    
    
+
+
+def pertenece(l: list, n: int) -> bool:
+
+    for i in range(len(l)):
+        if l[i] == n:
+            return True
+        
+    return False
+
+
+
+def quitar_repetidos(s: list) -> list:
+    res: list = []
+    for i in range(len(s)):
+        if not pertenece(res, s[i]):
+            res.append(s[i])
+    return res
+
+
+def promedio_alumnos_dict (archivo_legajo: str) -> dict:
+    
+    archivo_legajo: str = open(archivo_legajo,'r')
+    datos: list = []
+    datos_alumno: list = []
+    legajos: list = []
+    legajos_formateado: list = []
+    promedios: list = []
+    diccionario: dict = {}
+    
+    for line in archivo_legajo.readlines():
+        datos.append(line)
+    
+    for notas in datos:
+        datos_alumno.append(notas.split(','))
+
+    for i in range(len(datos_alumno)):
+        legajos.append(datos_alumno[i][0])
+
+    for legajo in legajos:
+        legajos_formateado.append(legajo.strip("'"))
+    
+    for legajo in legajos_formateado:
+        promedios.append(promedio_estudiante(legajo))
+    
+    promedios = quitar_repetidos(promedios)
+    
+    legajos_formateado = quitar_repetidos(legajos_formateado)
    
+    i = 0    
+    for legajo in legajos_formateado:  
+        
+        diccionario[legajo] = promedios[i]
+        i += 1
+   
+   
+    return diccionario   
     
 
+inventario =  {}
 
-print(promedio_estudiante('646/20'))
+def agregar_producto(inventario, nombre, precio, cantidad):
+
+    inventario[nombre] = {'precio': precio, 'cantidad': cantidad}
+    return inventario
+
+def actualizar_stock(inventario, nombre, cantidad):
+    if nombre in inventario:
+        inventario[nombre]['cantidad'] = cantidad
+            
+def actualizar_precios(inventario, nombre, precio):
+    if nombre in inventario:
+        inventario[nombre]['precio'] = precio
+
+def calcular_valor_inventario(inventario):
+    valor = 0
+    for producto in inventario:
+        valor += inventario[producto]['precio'] * inventario[producto]['cantidad']
+        
+    return valor
+
+
+
+
+
+agregar_producto(inventario, 'guitarra', 100,3)
+agregar_producto(inventario, 'bajo', 200,4)
+
+actualizar_stock(inventario, 'guitarra',10)
+actualizar_stock(inventario, 'guitarra',15)
+
+actualizar_precios(inventario,'guitarra', 800)
+
+print(calcular_valor_inventario(inventario))
 
 
 

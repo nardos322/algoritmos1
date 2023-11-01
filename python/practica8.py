@@ -630,7 +630,54 @@ actualizar_stock(inventario, 'guitarra',15)
 
 actualizar_precios(inventario,'guitarra', 800)
 
-print(calcular_valor_inventario(inventario))
+
+
+historiales = {}
+
+ultimo_sacado = []
+
+def visitar_sitio(historiales, usuario, sitio):
+   
+    if not usuario in historiales:
+        paginas_web = LifoQueue()
+        paginas_web.put(sitio)
+        historiales[usuario] = paginas_web
+    else: 
+    
+        historiales[usuario].put(sitio)
+
+def navegar_atras(historiales, usuario):
+    
+    if usuario in historiales:
+        ultimo_sacado.append(historiales[usuario].get())
+ 
+        return ultimo_sacado
+           
 
 
 
+
+def navegar_adelante(historiales, usuario):
+     if usuario in historiales:
+        
+        ultimo_sacado_reverso = ultimo_sacado[::-1]
+        
+        historiales[usuario].put(ultimo_sacado_reverso[0])
+        ultimo_sacado.remove(ultimo_sacado_reverso[0])
+
+
+
+
+visitar_sitio(historiales,'user1', 'google.com')  
+visitar_sitio(historiales,'user1', 'youtube.com')
+visitar_sitio(historiales,'user1', 'tumblr.com')
+visitar_sitio(historiales,'user2', 'x.com')    
+navegar_atras(historiales, 'user1')
+navegar_atras(historiales, 'user1')
+navegar_adelante(historiales,'user1')
+navegar_adelante(historiales,'user1')
+navegar_atras(historiales,'user2')
+navegar_adelante(historiales,'user2')
+
+print(historiales)  
+print(list(historiales['user2'].queue))

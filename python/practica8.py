@@ -596,23 +596,23 @@ def promedio_alumnos_dict (archivo_legajo: str) -> dict:
     return diccionario   
     
 
-inventario =  {}
+inventario: dict =  {}
 
-def agregar_producto(inventario, nombre, precio, cantidad):
+def agregar_producto(inventario: dict, nombre: str, precio: int, cantidad: int) -> dict:
 
     inventario[nombre] = {'precio': precio, 'cantidad': cantidad}
     return inventario
 
-def actualizar_stock(inventario, nombre, cantidad):
+def actualizar_stock(inventario: dict, nombre: str, cantidad: int) -> None:
     if nombre in inventario:
         inventario[nombre]['cantidad'] = cantidad
             
-def actualizar_precios(inventario, nombre, precio):
+def actualizar_precios(inventario: dict, nombre: str, precio: int)-> None:
     if nombre in inventario:
         inventario[nombre]['precio'] = precio
 
-def calcular_valor_inventario(inventario):
-    valor = 0
+def calcular_valor_inventario(inventario: dict):
+    valor: int = 0
     for producto in inventario:
         valor += inventario[producto]['precio'] * inventario[producto]['cantidad']
         
@@ -636,7 +636,7 @@ historiales = {}
 
 ultimo_sacado = []
 
-def visitar_sitio(historiales, usuario, sitio):
+def visitar_sitio(historiales: dict, usuario: str, sitio: str) -> None:
    
     if not usuario in historiales:
         paginas_web = LifoQueue()
@@ -646,7 +646,7 @@ def visitar_sitio(historiales, usuario, sitio):
     
         historiales[usuario].put(sitio)
 
-def navegar_atras(historiales, usuario):
+def navegar_atras(historiales: dict, usuario: str)-> None:
     
     if usuario in historiales:
         ultimo_sacado.append(historiales[usuario].get())
@@ -657,7 +657,7 @@ def navegar_atras(historiales, usuario):
 
 
 
-def navegar_adelante(historiales, usuario):
+def navegar_adelante(historiales: dict, usuario: str) -> None:
      if usuario in historiales:
         
         ultimo_sacado_reverso = ultimo_sacado[::-1]

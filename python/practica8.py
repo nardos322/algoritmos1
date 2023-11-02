@@ -666,6 +666,28 @@ def navegar_adelante(historiales: dict, usuario: str) -> None:
         ultimo_sacado.remove(ultimo_sacado_reverso[0])
 
 
+expresion: str = '3 4 +'
+
+def evaluar_expresion(expresion: str) -> int:
+    pila = LifoQueue()
+    operadores = [ '+','-','*','/']
+    
+    numero = 0
+    valor = 0
+    for n in expresion:
+        if n not in operadores :
+            pila.put(n)
+        else:
+            while not pila.empty():
+                i = pila.get()
+                if i == ' ':
+                    
+                    print(i)
+            
+
+
+
+evaluar_expresion(expresion)
 
 
 visitar_sitio(historiales,'user1', 'google.com')  
@@ -678,6 +700,3 @@ navegar_adelante(historiales,'user1')
 navegar_adelante(historiales,'user1')
 navegar_atras(historiales,'user2')
 navegar_adelante(historiales,'user2')
-
-print(historiales)  
-print(list(historiales['user2'].queue))

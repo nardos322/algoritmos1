@@ -668,38 +668,102 @@ def navegar_adelante(historiales: dict, usuario: str) -> None:
 
 expresion: str = '3 4 +'
 
-def evaluar_expresion(expresion: str) -> int:
-    pila = LifoQueue()
-    operadores = [ '+','-','*','/']
+
+
+
+
+
+
+m = [[1,2,3],[3,4,5],[5,6,7]]
+
+res = 0
+
+# for i in range(len(m)):
+#     for j in range(len(m[i])):
+#         res += m[i][j]
+#         print(m[i][j])
+
+# print(res,'hola')
+
+def sacar_repetidos (l: list) -> list:
+
+    res: list = []
+
+    for i in l:
+        if not i in res:
+            res.append(i)
+
+    return res
+
+# print(sacar_repetidos([1,1,2,2,3,3]))
+
+
+def minimo_chatgpt (l: list):
+    if len(l) == 0:
+        return None
     
-    numero = 0
+    minimum = l[0]
+
+    for i in l:
+        if i < minimum:
+            minimum = i
+
+    return minimum
+
+def ordenar (l: list) -> list:
+
+    res: list = []
+
+    while len(l) != 0:
+        for i in l:
+            if i == minimo_chatgpt(l):
+                res.append(i)
+                l.remove(minimo_chatgpt(l))
+
+    return res
+
+print(ordenar([7,6,5,1,4]))
+
+def minimo(l: list) -> int:
+
+    res: list = []
+
     
-    for n in expresion:
-        if n not in operadores:
-            pila.put(n)
-        else:
-            while not pila.empty():
-                a = pila.get()
-                print(a)
-                if a != ' ':
-                    b = pila.get()
-                    c = b + a
-                
-                else:
-                    
-                    b = int(pila.get())
-                    a = pila.get()
-                    if a == ' ':
-                        a = pila.get()
+        
+    for i in range(len(l)):
+        for j in range(len(l)):
+            print(l[i] , l[j])
+           
+       
 
-                        print(n)
-                     
-                    
-                #print(list(pila.queue))  
-                    
+# print(minimo([2,1,3,4]))
 
 
-evaluar_expresion(expresion)
+
+print(minimo_chatgpt([2,3,4,1,2,3]))
+
+
+
+def multiplos_2_o_5 (l: list) -> list:
+
+    res: list = []
+
+    for i in l:
+        if i % 2 == 0 or i % 5 == 0:
+            res.append(i)
+
+    res = sacar_repetidos(res)
+    res = ordenar(res)
+
+    return res
+
+#print(multiplos_2_o_5([5,2,2,3,10,10,7,7,1,25]))
+
+
+
+
+
+
                     
 visitar_sitio(historiales,'user1', 'google.com')  
 visitar_sitio(historiales,'user1', 'youtube.com')

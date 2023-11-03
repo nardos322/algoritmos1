@@ -673,23 +673,34 @@ def evaluar_expresion(expresion: str) -> int:
     operadores = [ '+','-','*','/']
     
     numero = 0
-    valor = 0
+    
     for n in expresion:
-        if n not in operadores :
+        if n not in operadores:
             pila.put(n)
         else:
             while not pila.empty():
-                i = pila.get()
-                if i == ' ':
+                a = pila.get()
+                print(a)
+                if a != ' ':
+                    b = pila.get()
+                    c = b + a
+                
+                else:
                     
-                    print(i)
-            
+                    b = int(pila.get())
+                    a = pila.get()
+                    if a == ' ':
+                        a = pila.get()
 
+                        print(n)
+                     
+                    
+                #print(list(pila.queue))  
+                    
 
 
 evaluar_expresion(expresion)
-
-
+                    
 visitar_sitio(historiales,'user1', 'google.com')  
 visitar_sitio(historiales,'user1', 'youtube.com')
 visitar_sitio(historiales,'user1', 'tumblr.com')

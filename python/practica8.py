@@ -666,10 +666,63 @@ def navegar_adelante(historiales: dict, usuario: str) -> None:
         ultimo_sacado.remove(ultimo_sacado_reverso[0])
 
 
-expresion: str = '3 4 +'
+expresion: str = '34 5 +'
 
 
+def evaluar_expresion(expresion: str) -> int:
+    
+    operadores: list = ['+', '-', '*', '/']
+    res: LifoQueue = LifoQueue()
+    expresion_formateada: list[str] = expresion.split(' ')
+    
+    for i in expresion_formateada:
+        
+        if i not in operadores:
+            res.put(i)
+        else:
+            while not res.qsize() == 1:
+                a = int(res.get())
+                b = int(res.get())
+                if i == '+':
+                    valor = b + a
+                    res.put(valor)
+                elif i == '-':
+                    valor = b - a
+                    res.put(valor)
+                elif i == '*':
+                    valor = b * a
+                    res.put(valor)
+                elif i == '/':
+                    valor = b / a
+                    res.put(valor)     
+    
+    return res.get()
+            
 
+
+def leer_binario(binario_input: str) -> str:
+    file_binario: str = open(binario_input, 'rb')
+
+    palabras_legibles = ''
+    res = []
+
+    for i in file_binario.read():
+        if 48 <= i <= 57 or 65 <= i <= 90 or  97 <= i <= 122 or i == 32 or i == 95:
+
+            palabras_legibles += chr(i)
+                
+    palabras_legibles = palabras_legibles.split()
+     
+    for i in palabras_legibles:
+        if len(i) >= 5:
+            res.append(i)
+    
+    file_binario.close()    
+
+    return res
+    
+        
+print(leer_binario('common.zip'))
 
 
 
@@ -722,7 +775,7 @@ def ordenar (l: list) -> list:
 
     return res
 
-print(ordenar([7,6,5,1,4]))
+
 
 def minimo(l: list) -> int:
 
@@ -740,9 +793,6 @@ def minimo(l: list) -> int:
 
 
 
-print(minimo_chatgpt([2,3,4,1,2,3]))
-
-
 
 def multiplos_2_o_5 (l: list) -> list:
 
@@ -758,8 +808,6 @@ def multiplos_2_o_5 (l: list) -> list:
     return res
 
 #print(multiplos_2_o_5([5,2,2,3,10,10,7,7,1,25]))
-
-
 
 
 
